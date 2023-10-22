@@ -10,6 +10,7 @@ import Library from "./Library";
 import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
 import { twMerge } from "tailwind-merge";
+import { BsMusicPlayerFill } from "react-icons/bs";
 interface SidebarProps{
     children: React.ReactNode
     songs: Song[]
@@ -21,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({children,songs}) => {
     const routes = useMemo( () => [
         {   
             icon: HiHome,
-            label: 'Home',
+            label: 'Início',
             active: pathname !== '/search',
             href: '/'
         },
@@ -42,6 +43,10 @@ const Sidebar: React.FC<SidebarProps> = ({children,songs}) => {
             <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
               <Box>
                 <div className="flex flex-col gap-y-4 px-5 py-4">
+                    <div className='flex center gap-y-4 px-1 py-2'>
+                        <BsMusicPlayerFill style={{ color: 'white' }} />
+                        <span style={{ color: 'white', marginLeft: '16px', fontFamily:"cursive" }}>M u s i c &nbsp;&nbsp;&nbsp;F r e e</span>
+                    </div>
                     {routes.map((item) => (
                         <SidebarItem
                          key={item.label}

@@ -4,6 +4,7 @@ import Image from "next/image"
 import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 import PlayButton from "./PlayButton";
+import DeleteButton from "./DeleteButton";
 
 interface SongItemProps{
     data: Song;
@@ -17,9 +18,34 @@ const SongItem: React.FC<SongItemProps> = ({
 }) => {
     const imagePath = useLoadImage(data)
      
-    return ( 
+    return (
         <div
-            onClick={() => onClick(data.id)}
+        className="
+        relative
+        group
+        flex
+        flex-row-reverse
+        item-center
+        justify-center
+        rounded-md
+        overflow-hidden
+        gap-x-4
+        cursor-pointer
+        transition
+        p-3
+    "
+        >   
+        <div
+        className="
+            absolute
+            right-0
+            top-0
+            z-10
+            "
+        >
+        <DeleteButton/>    
+        </div> 
+        <div
             className="
                 relative
                 group
@@ -36,8 +62,9 @@ const SongItem: React.FC<SongItemProps> = ({
                 transition
                 p-3
             "
-        >
+        >   
             <div
+            onClick={() => onClick(data.id)}
                 className="
                 relative
                 aspect-square
@@ -70,7 +97,9 @@ const SongItem: React.FC<SongItemProps> = ({
                   By {data.author}  
                 </p>
             </div>
-            <div className="
+            <div 
+            onClick={() => onClick(data.id)}
+            className="
                 absolute
                 bottom-24
                 right-5
@@ -78,6 +107,7 @@ const SongItem: React.FC<SongItemProps> = ({
                 <PlayButton/>
             </div>
         </div>
+        </div> 
      );
 }
  
